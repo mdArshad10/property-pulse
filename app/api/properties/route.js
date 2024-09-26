@@ -1,3 +1,5 @@
+"use strict";
+
 export const GET = async (request) => {
   try {
     return new Response(JSON.stringify({ message: "welcome to nextjs" }), {
