@@ -1,17 +1,17 @@
-"use client";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import InfoBoxes from "@/components/InfoBoxes";
-import Link from "next/link";
+import HomeProperties from "@/components/HomeProperties";
 
-function HomePage() {
+const HomePage = async () => {
   return (
     <div>
       <Hero />
       <InfoBoxes />
+      <HomeProperties />
       <Footer />
     </div>
   );
-}
+};
 
 export default HomePage;
