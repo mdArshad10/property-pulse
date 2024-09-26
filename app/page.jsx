@@ -1,13 +1,17 @@
 "use client";
+import Footer from "@/components/Footer";
+import Hero from "@/components/Hero";
+import InfoBoxes from "@/components/InfoBoxes";
 import Link from "next/link";
 
-function page() {
+function HomePage() {
   return (
     <div>
-      <h1 className="text-3xl">Welcome to Home Page</h1>
-      <Link href="/properties">Show Properties</Link>
+      <Hero />
+      <InfoBoxes />
+      <Footer />
     </div>
   );
 }
 
-export default page;
+export default HomePage;
