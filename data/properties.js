@@ -1,6 +1,5 @@
 export const properties = [
   {
-    _id: "1",
     owner: "1",
     name: "Boston Commons Retreat",
     type: "Apartment",
@@ -41,12 +40,10 @@ export const properties = [
       phone: "617-555-5555",
     },
     images: ["a1.jpg", "a2.jpg", "a3.jpg"],
-    isFeatured: false,
-    createdAt: "2024-01-01T00:00:00.000Z",
-    updatedAt: "2024-01-01T00:00:00.000Z",
+    is_featured: false,
+    
   },
   {
-    _id: "2",
     owner: "1",
     name: "Cozy Downtown Loft",
     type: "Apartment",
@@ -85,12 +82,10 @@ export const properties = [
       phone: "212-555-5555",
     },
     images: ["b1.jpg", "b2.jpg", "b3.jpg"],
-    isFeatured: false,
-    createdAt: "2024-01-02T00:00:00.000Z",
-    updatedAt: "2024-01-02T00:00:00.000Z",
+    is_featured: false,
+    
   },
   {
-    _id: "3",
     owner: "2",
     name: "Luxury Condo with a View",
     type: "Condo",
@@ -132,12 +127,10 @@ export const properties = [
       phone: "213-555-5555",
     },
     images: ["c1.jpg", "c2.jpg", "c3.jpg"],
-    isFeatured: false,
-    createdAt: "2024-01-03T00:00:00.000Z",
-    updatedAt: "2024-01-03T00:00:00.000Z",
+    is_featured: false,
+    
   },
   {
-    _id: "4",
     owner: "2",
     name: "Charming Cottage Getaway",
     type: "Cottage Or Cabin",
@@ -166,12 +159,10 @@ export const properties = [
       phone: "512-555-5555",
     },
     images: ["d1.jpg", "d2.jpg", "d3.jpg"],
-    isFeatured: false,
-    createdAt: "2024-01-04T00:00:00.000Z",
-    updatedAt: "2024-01-04T00:00:00.000Z",
+    is_featured: false,
+   
   },
   {
-    _id: "5",
     owner: "3",
     name: "Modern Downtown Studio",
     type: "Studio",
@@ -202,12 +193,10 @@ export const properties = [
       phone: "312-555-5555",
     },
     images: ["e1.jpg", "e2.jpg", "e3.jpg"],
-    isFeatured: true,
-    createdAt: "2024-01-05T00:00:00.000Z",
-    updatedAt: "2024-01-05T00:00:00.000Z",
+    is_featured: true,
+   
   },
   {
-    _id: "6",
     owner: "3",
     name: "Seaside Retreat",
     type: "House",
@@ -238,12 +227,10 @@ export const properties = [
       phone: "305-555-5555",
     },
     images: ["f1.jpg", "f2.jpg", "f3.jpg"],
-    isFeatured: true,
-    createdAt: "2024-01-06T00:00:00.000Z",
-    updatedAt: "2024-01-06T00:00:00.000Z",
+    is_featured: true,
+
   },
   {
-    _id: "7",
     owner: "4",
     name: "Rustic Cabin in the Woods",
     type: "Cottage Or Cabin",
@@ -273,12 +260,10 @@ export const properties = [
       phone: "303-555-5555",
     },
     images: ["g1.jpg", "g2.jpg", "g3.jpg"],
-    isFeatured: false,
-    createdAt: "2024-01-07T00:00:00.000Z",
-    updatedAt: "2024-01-07T00:00:00.000Z",
+    is_featured: false,
+   
   },
   {
-    _id: "8",
     owner: "5",
     name: "Ski-In/Ski-Out Chalet",
     type: "Chalet",
@@ -308,12 +293,10 @@ export const properties = [
       phone: "970-555-5555",
     },
     images: ["h1.jpg", "h2.jpg", "h3.jpg"],
-    isFeatured: false,
-    createdAt: "2024-01-08T00:00:00.000Z",
-    updatedAt: "2024-01-08T00:00:00.000Z",
+    is_featured: false,
+    
   },
   {
-    _id: "9",
     owner: "6",
     name: "Mountain View Retreat",
     type: "House",
@@ -344,12 +327,10 @@ export const properties = [
       phone: "303-555-5555",
     },
     images: ["i1.jpg", "i2.jpg", "i3.jpg"],
-    isFeatured: false,
-    createdAt: "2024-01-09T00:00:00.000Z",
-    updatedAt: "2024-01-09T00:00:00.000Z",
+    is_featured: false,
+    
   },
   {
-    _id: "10",
     owner: "7",
     name: "Historic Downtown Loft",
     type: "Apartment",
@@ -380,8 +361,6 @@ export const properties = [
       phone: "215-555-5555",
     },
     images: ["j1.jpg", "j2.jpg", "j3.jpg"],
-    isFeatured: false,
-    createdAt: "2024-01-10T00:00:00.000Z",
-    updatedAt: "2024-01-10T00:00:00.000Z",
+    is_featured: false,
   },
 ];

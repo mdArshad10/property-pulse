@@ -15,7 +15,7 @@ const dbConnected = async () => {
 
   try {
     const dbInstance = await mongoose.connect(
-      `${process.env.MONGO_URL}/property-pluse`
+      `${process.env.MONGO_URL}/property-plus`
     );
     connected = true;
 
