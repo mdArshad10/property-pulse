@@ -1,9 +1,14 @@
 "use client";
 import { NEXT_PUBLIC_API_DOMAIN } from "./constant";
 
-const fetchAllProperties = async () => {
+async function fetchAllProperties() {
   try {
-    const response = await fetch(`${NEXT_PUBLIC_API_DOMAIN}/api/properties`);
+    // when api domain is not available
+    if (!NEXT_PUBLIC_API_DOMAIN) {
+      return [];
+    }
+
+    const response = await fetch(`${NEXT_PUBLIC_API_DOMAIN}/properties`);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -13,9 +18,9 @@ const fetchAllProperties = async () => {
     console.error("Error fetching properties:", error.message);
     return [];
   }
-};
+}
 
-const fetchPropertyById = async (propertyId) => {
+async function fetchPropertyById(propertyId) {
   try {
     const response = await fetch(
       `${NEXT_PUBLIC_API_DOMAIN}/api/properties/${propertyId}`
@@ -29,6 +34,6 @@ const fetchPropertyById = async (propertyId) => {
     console.error("Error fetching property:", error.message);
     return null;
   }
-};
+}
 
 export { fetchAllProperties, fetchPropertyById };

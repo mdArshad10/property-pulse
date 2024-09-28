@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import {
   FaBed,
@@ -6,14 +7,16 @@ import {
   FaMoneyBill,
   FaLocationArrow,
 } from "react-icons/fa";
-import React from "react";
+import Image from "next/image";
+import Logo from "@/assets/images/properties/a1.jpg";
 
 const PropertyCard = ({ property }) => {
   return (
     <div className="rounded-xl shadow-md relative">
-      <img
-        src="images/properties/a1.jpg"
-        alt=""
+      <Image
+        src={Logo}
+        // src="@/assets/images/properties/a1.jpg"
+        alt="property"
         className="object-cover rounded-t-xl"
       />
       <div className="p-4">
