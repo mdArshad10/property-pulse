@@ -23,7 +23,7 @@ async function fetchAllProperties() {
 async function fetchPropertyById(propertyId) {
   try {
     const response = await fetch(
-      `${NEXT_PUBLIC_API_DOMAIN}/api/properties/${propertyId}`
+      `${NEXT_PUBLIC_API_DOMAIN}/properties/${propertyId}`
     );
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
