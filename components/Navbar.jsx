@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaGoogle } from "react-icons/fa";
 import Logo from "@/assets/images/logo.png";
-import profileDefault from "@/assets/images/user.png";
+import profileDefault from "@/assets/images/profile.png";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { useSession, signIn, signOut, getProviders } from "next-auth/react";
@@ -11,7 +11,7 @@ import { useSession, signIn, signOut, getProviders } from "next-auth/react";
 const Navbar = () => {
   const { data: session } = useSession();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(true);
   const [providers, setProviders] = useState(true);
   const pathname = usePathname();
 
@@ -23,7 +23,7 @@ const Navbar = () => {
     setAuthProvider();
   }, []);
 
-  console.log(providers);
+  
 
   return (
     <nav className="bg-blue-700 border-b border-blue-500">
@@ -62,7 +62,6 @@ const Navbar = () => {
             {/* <!-- Logo --> */}
             <Link className="flex flex-shrink-0 items-center" href="/">
               <Image className="h-10 w-auto" src={Logo} alt="PropertyPulse" />
-
               <span className="hidden md:block text-white text-2xl font-bold ml-2">
                 PropertyPulse
               </span>
@@ -87,7 +86,8 @@ const Navbar = () => {
                 >
                   Properties
                 </Link>
-                {session && (
+                {/* {session && ( */}
+                {true && (
                   <Link
                     href="/properties/add"
                     className={`${
@@ -102,7 +102,8 @@ const Navbar = () => {
           </div>
 
           {/* <!-- Right Side Menu (Logged Out) --> */}
-          {session ? (
+          {/* {session ? ( */}
+          {true ? (
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 md:static md:inset-auto md:ml-6 md:pr-0">
               <Link href="/messages" className="relative group">
                 <button
@@ -153,7 +154,7 @@ const Navbar = () => {
                 </div>
 
                 {/* <!-- Profile dropdown --> */}
-                {isProfileMenuOpen && (
+                {/* {isProfileMenuOpen && (
                   <div
                     id="user-menu"
                     className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
@@ -181,6 +182,10 @@ const Navbar = () => {
                       Saved Properties
                     </Link>
                     <button
+                    onClick = {()=>{
+                      setIsProfileMenuOpen(false);
+                      signOut();
+                    }}
                       className="block px-4 py-2 text-sm text-gray-700"
                       role="menuitem"
                       tabIndex="-1"
@@ -189,7 +194,9 @@ const Navbar = () => {
                       Sign Out
                     </button>
                   </div>
-                )}
+                )} */}
+
+                
               </div>
             </div>
           ) : (
@@ -209,6 +216,8 @@ const Navbar = () => {
               </div>
             </div>
           )}
+
+          
 
           {/* <!-- Right Side Menu (Logged In) --> */}
         </div>

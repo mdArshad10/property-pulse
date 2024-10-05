@@ -2,7 +2,6 @@
 import PropertyCard from "@/components/PropertyCard";
 import { fetchAllProperties } from "@/utils/request.js";
 
-
 async function PropertyPage() {
   const allProperties = await fetchAllProperties();
 
@@ -14,7 +13,11 @@ async function PropertyPage() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {allProperties.data.map((property) => (
-              <PropertyCard key={property._id} property={property} />
+              <PropertyCard
+                key={property._id}
+                property={property}
+                image={property.images[0]}
+              />
             ))}
           </div>
         )}

@@ -10,12 +10,14 @@ import {
 import Image from "next/image";
 import Logo from "@/assets/images/properties/a1.jpg";
 
-const PropertyCard = ({ property }) => {
+const PropertyCard = ({ property, image }) => {
+  console.log(image);
+
   return (
     <div className="rounded-xl shadow-md relative">
       <Image
+        // src={image}
         src={Logo}
-        // src="@/assets/images/properties/a1.jpg"
         alt="property"
         className="object-cover rounded-t-xl"
       />
