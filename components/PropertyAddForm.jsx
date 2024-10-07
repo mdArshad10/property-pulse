@@ -34,13 +34,64 @@ export const PropertyAddForm = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
+    // check the nest property
     if (name.includes(".")) {
       const [outerKey, innerKey] = name.split(".");
-      console.log(outerKey, innerKey);
+      setFields((prev) => ({
+        ...prev,
+        [outerKey]: {
+          ...prev[outerKey],
+          [innerKey]: value,
+        },
+      }));
+    } else {
+      // Not Nested property
+      setFields((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
     }
   };
-  const handleAmenitiesChanges = (e) => {};
-  const handleImagesChange = (e) => {};
+  const handleAmenitiesChanges = (e) => {
+    const { value, checked } = e.target;
+    // clone the current array
+    const updatedAmenities = [...fields.amenities];
+
+    if (checked) {
+      // Add value to array
+      updatedAmenities.push(value);
+    } else {
+      // remove value from array
+      const index = updatedAmenities.indexOf(value);
+
+      if (index !== -1) {
+        updatedAmenities.splice(index, 1);
+      }
+    }
+
+    // update state with updated array
+    setFields((prevFields) => ({
+      ...prevFields,
+      amenities: updatedAmenities,
+    }));
+  };
+  const handleImagesChange = (e) => {
+    const { files } = e.target;
+
+    // clone images array
+    const updatedImages = [...fields.images];
+
+    // add new images to array
+    for (const file of files) {
+      updatedImages.push(file.name);
+    }
+
+    // update state with array of images
+    setFields((prevFields) => ({
+      ...prevFields,
+      images: updatedImages,
+    }));
+  };
 
   useEffect(() => {
     setMounted(true);
@@ -48,7 +99,11 @@ export const PropertyAddForm = () => {
 
   return (
     mounted && (
-      <form>
+      <form
+        action="/api/properties"
+        method="POST"
+        encType="multipart/form-data"
+      >
         <h2 className="text-3xl text-center font-semibold mb-6">
           Add Property
         </h2>
@@ -509,6 +564,7 @@ export const PropertyAddForm = () => {
             className="border rounded w-full py-2 px-3"
             accept="image/*"
             multiple
+            onChange={handleImagesChange}
             required
           />
         </div>
