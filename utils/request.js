@@ -8,7 +8,9 @@ async function fetchAllProperties() {
       return [];
     }
 
-    const response = await fetch(`${NEXT_PUBLIC_API_DOMAIN}/properties`);
+    const response = await fetch(`${NEXT_PUBLIC_API_DOMAIN}/properties`, {
+      cache: "no-store",
+    });
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }

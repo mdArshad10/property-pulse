@@ -1,7 +1,8 @@
 import Property from "@/models/Property";
 import { StatusCodes } from "http-status-codes";
 import dbConnection from "@/config/database";
-import { getServerSession } from "@/utils/getSessionUser";
+import { getSessionUser } from "@/utils/getSessionUser";
+import cloudinary from "@/config/cloudinary";
 
 // GET      /api/properties
 export const GET = async (request) => {
@@ -33,21 +34,20 @@ export const POST = async (request) => {
   try {
     await dbConnection();
 
-    
+    const sessionUser = await getSessionUser();
 
-    if (!session) {
+    if (!sessionUser || !sessionUser.userId) {
       return new Response(
         JSON.stringify({
           success: false,
-          message: "You are not authenticated",
+          message: "User id is required",
           data: null,
-          err: null,
         }),
         { status: StatusCodes.UNAUTHORIZED }
       );
     }
 
-    const userId = session.user.id;
+    const { userId } = sessionUser;
 
     const formData = await request.formData();
 
@@ -82,15 +82,39 @@ export const POST = async (request) => {
         phone: formData.get("seller_info.phone"),
         email: formData.get("seller_info.email"),
       },
-      images,
+
       owner: userId,
     };
 
-    console.log(propertyData);
+    // upload image(s) to cloudinary
+    const imageUploadPromises = [];
+    images.forEach(async (image) => {
+      const imageBuffer = await image.arrayBuffer();
+      const imageArray = Array.from(new Uint8Array(imageBuffer));
+      const imageData = Buffer.from(imageArray);
 
-    return new Response(
-      JSON.stringify({ success: true, message: "", data: null, err: null }),
-      { status: StatusCodes.OK }
+      // convert the image data to base64
+      const imageBase64 = imageData.toString("base64");
+
+      // make request to upload to cloudinary
+      const result = await cloudinary.uploader.upload(
+        `data:image/png;base64,${imageBase64}`,
+        {
+          folder: "property-pulse",
+        }
+      );
+      imageUploadPromises.push(result.secure_url);
+
+      // wait for all images to upload
+      const uploadedImages = await Promise.all(imageUploadPromises);
+      propertyData.images = uploadedImages;
+    });
+
+    const newProperty = new Property(propertyData);
+    await newProperty.save();
+
+    return Response.redirect(
+      `${process.env.NEXTAUTH_URL}/properties/${newProperty._id}`
     );
   } catch (error) {
     console.log(error);
